@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class GoldController {
     @GetMapping("/gold")
     public ResponseEntity<String> getGold() {
-        return ResponseEntity.ok("\uD83D\uDCB0 \uD83D\uDCB0 \uD83D\uDCB0 \uD83D\uDCB0 \uD83D\uDCB0 \uD83D\uDCB0\uD83D\uDCB0 \uD83D\uDCB0");
+        return ResponseEntity.ok("\uD83D\uDCB0 \uD83D\uDCB0 \uD83D\uDCB0 \uD83D\uDCB0 \uD83D\uDCB0 \uD83D\uDCB0 \uD83D\uDCB0 \uD83D\uDCB0");
     }
 
     @GetMapping("/charity")
