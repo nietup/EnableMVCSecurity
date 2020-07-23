@@ -23,6 +23,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("admin")
                 .password(encoder.encode("admin"))
                 .roles("USER", "ADMIN")
+                .and()
+                .withUser("guest")
+                .password(encoder.encode("guest"))
+                .roles("GUEST")
         .and()
         .passwordEncoder(encoder);
     }
@@ -30,12 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .formLogin() //for user friendly login-page
+                .formLogin() //for user friendly /login page; visiting /logout ends session
                 .and()
                 .httpBasic() //for machines to login with basic authentication
                 .and()
                 .authorizeRequests()
-                .regexMatchers("/gold.*").authenticated() //remember to match paths with- and without the final "/"!
+                .regexMatchers("/gold.*").hasRole("USER") //remember to match paths with- and without the final "/"!
                 .regexMatchers(HttpMethod.POST, "/deposit.*").authenticated()
                 .anyRequest().permitAll();
     }
